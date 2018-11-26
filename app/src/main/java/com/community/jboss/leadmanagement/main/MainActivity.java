@@ -1,6 +1,5 @@
 package com.community.jboss.leadmanagement.main;
 
-
 import android.Manifest;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -27,6 +26,7 @@ import com.bumptech.glide.Glide;
 import com.community.jboss.leadmanagement.BaseActivity;
 import com.community.jboss.leadmanagement.PermissionManager;
 import com.community.jboss.leadmanagement.R;
+import com.community.jboss.leadmanagement.RecordingsActivity;
 import com.community.jboss.leadmanagement.SettingsActivity;
 import com.community.jboss.leadmanagement.main.contacts.ContactsFragment;
 import com.community.jboss.leadmanagement.main.contacts.editcontact.EditContactActivity;
@@ -182,20 +182,24 @@ public class MainActivity extends BaseActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            startActivity(new Intent(this, SettingsActivity.class));
-            return true;
-        }else if( id == R.id.action_import ){
-            if(permissionManager.permissionStatus(Manifest.permission.READ_CONTACTS)){
-                startActivity(new Intent(MainActivity.this,ImportContactActivity.class));
-            }else{
-                permissionManager.requestPermission(109,Manifest.permission.READ_CONTACTS);
-            }
-            return true;
+        switch(id){
+            case R.id.action_settings:
+                startActivity(new Intent(this, SettingsActivity.class));
+                return true;
+            case R.id.action_import:
+                if(permissionManager.permissionStatus(Manifest.permission.READ_CONTACTS)){
+                    startActivity(new Intent(MainActivity.this,ImportContactActivity.class));
+                }else{
+                    permissionManager.requestPermission(109,Manifest.permission.READ_CONTACTS);
+                }
+                return true;
+            case R.id.action_recordings:
+                Intent i = new Intent(MainActivity.this, RecordingsActivity.class);
+                startActivity(i);
+                return true;
+                default:
+                    return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @Override

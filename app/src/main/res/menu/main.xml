@@ -18,6 +18,11 @@
         android:title="@string/import_contacts"
         android:orderInCategory="99"
         android:visible="false"/>
+    <item
+        android:id="@+id/action_recordings"
+        android:title="@string/see_recordings"
+        android:orderInCategory="2"
+        android:visible="true" />
 
 </menu>
 
