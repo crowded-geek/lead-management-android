@@ -20,6 +20,7 @@ public class MainActivityViewModel extends ViewModel {
         CONTACTS,
         GROUPS,
         SETTINGS,
+        ABOUT,
         TOGGLE_THEME,
         LIGHT_THEME
     }

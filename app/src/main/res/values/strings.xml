@@ -85,5 +85,9 @@
     <string name="slide_2_content">Easily manage and safely store all your business contacts</string>
     <string name="slide_3_header">Never forget again</string>
     <string name="slide_3_content">Record conversations to always have a backup of your important business calls</string>
+    <string name="contrib">Contributors</string>
+    <string name="version">Version: 1.0</string>
+    <string name="app_info">An app you can manage your lead contacts, make groups, record calls and much more!</string>
+    <string name="title_about">About</string>
 
 </resources>

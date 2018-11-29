@@ -24,6 +24,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.community.jboss.leadmanagement.AboutActivity;
 import com.community.jboss.leadmanagement.BaseActivity;
 import com.community.jboss.leadmanagement.PermissionManager;
 import com.community.jboss.leadmanagement.R;
@@ -211,6 +212,9 @@ public class MainActivity extends BaseActivity
             case R.id.nav_settings:
                 navigationItem = MainActivityViewModel.NavigationItem.SETTINGS;
                 break;
+            case R.id.nav_about:
+                navigationItem = MainActivityViewModel.NavigationItem.ABOUT;
+                break;
             case R.id.toggle_theme:
                 darkTheme(true);
                 navigationItem = MainActivityViewModel.NavigationItem.CONTACTS;
@@ -242,6 +246,10 @@ public class MainActivity extends BaseActivity
                 break;
             case SETTINGS:
                 startActivity(new Intent(this, SettingsActivity.class));
+                return;
+            case ABOUT:
+                Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+                startActivity(intent);
                 return;
             case TOGGLE_THEME:
                 darkTheme(true);

@@ -59,6 +59,7 @@ dependencies {
     annotationProcessor 'frankiesardo:icepick-processor:3.2.0'
     //Circular Imageview
     implementation 'com.mikhaellopez:circularimageview:3.0.2'
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
     // Timber
     implementation 'com.jakewharton.timber:timber:4.6.0'
     // Architecture components
@@ -71,6 +72,8 @@ dependencies {
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.6.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.4.0'
+    //tooltip
+    implementation 'com.github.vihtarb:tooltip:0.2.0'
 
     // Info Slider
     implementation 'com.github.msayan:tutorial-view:v1.0.6'
@@ -78,3 +81,4 @@ dependencies {
 }
 
 //apply plugin: 'com.google.gms.google-services'
+
