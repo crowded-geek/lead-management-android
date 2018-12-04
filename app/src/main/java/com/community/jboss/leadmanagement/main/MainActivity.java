@@ -281,11 +281,8 @@ public class MainActivity extends BaseActivity
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 firebaseAuthWithGoogle(account);
             } catch (ApiException e) {
-                // Google Sign In failed, update UI appropriately
-                Log.w(TAG, "Google sign in failed", e);
-                // [START_EXCLUDE]
+                Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                 updateUI(null);
-                // [END_EXCLUDE]
             }
         }
     }
@@ -305,10 +302,11 @@ public class MainActivity extends BaseActivity
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
                         } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            //Snackbar.make(findViewById(R.id.main_layout), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
-                            Toast.makeText(getApplicationContext(), "Authentication failed", Toast.LENGTH_SHORT ).show();
+                            if(task.getException() != null) {
+                                Toast.makeText(MainActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                            }else {
+                                Toast.makeText(MainActivity.this, "Unknown error occurred, please try again.", Toast.LENGTH_SHORT).show();
+                            }
                             updateUI(null);
                         }
                         // [START_EXCLUDE]
@@ -333,6 +331,10 @@ public class MainActivity extends BaseActivity
                 new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
+                        if(task.getException() != null){
+                            Toast.makeText(MainActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                            return;
+                        }
                         updateUI(null);
                     }
                 });
