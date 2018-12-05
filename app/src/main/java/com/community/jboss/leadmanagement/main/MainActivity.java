@@ -28,6 +28,7 @@ import com.community.jboss.leadmanagement.BaseActivity;
 import com.community.jboss.leadmanagement.PermissionManager;
 import com.community.jboss.leadmanagement.R;
 import com.community.jboss.leadmanagement.SettingsActivity;
+import com.community.jboss.leadmanagement.SignActivity;
 import com.community.jboss.leadmanagement.main.contacts.ContactsFragment;
 import com.community.jboss.leadmanagement.main.contacts.editcontact.EditContactActivity;
 import com.community.jboss.leadmanagement.main.contacts.importcontact.ImportContactActivity;
@@ -134,7 +135,6 @@ public class MainActivity extends BaseActivity
 
         initFab();
         Crashlytics.log("Happy GCI 2018");
-        // crash_the_fabric.setText("CRASH IS COMINGG");
     }
 
     private void selectInitialNavigationItem() {
@@ -259,71 +259,12 @@ public class MainActivity extends BaseActivity
     }
     // [END on_start_check_user]
 
-    // [START onactivityresult]
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            try {
-                // Google Sign In was successful, authenticate with Firebase
-                GoogleSignInAccount account = task.getResult(ApiException.class);
-                firebaseAuthWithGoogle(account);
-            } catch (ApiException e) {
-                Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                updateUI(null);
-            }
-        }
-    }
-
-    // [START auth_with_google]
-    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
-        Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
-        showProgressDialog();
-        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
-        mAuth.signInWithCredential(credential)
-            .addOnCompleteListener(this, task -> {
-                if (task.isSuccessful()) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d(TAG, "signInWithCredential:success");
-                    FirebaseUser user = mAuth.getCurrentUser();
-                    updateUI(user);
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w(TAG, "signInWithCredential:failure", task.getException());
-                    //Snackbar.make(findViewById(R.id.main_layout), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
-                    Toast.makeText(getApplicationContext(), "Authentication failed", Toast.LENGTH_SHORT ).show();
-                    updateUI(null);
-                }
-                // [START_EXCLUDE]
-                hideProgressDialog();
-                // [END_EXCLUDE]
-            });
-    }
-
-
-    private void signIn() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
-
     private void signOut() {
         // Firebase sign out
         mAuth.signOut();
 
         // Google sign out
-        mGoogleSignInClient.signOut().addOnCompleteListener(this,
-                new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.getException() != null){
-                            Toast.makeText(MainActivity.this, task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-                        updateUI(null);
-                    }
-                });
+        mGoogleSignInClient.signOut().addOnCompleteListener(this, task -> updateUI(null));
     }
 
     private void updateUI(FirebaseUser user) {
@@ -374,7 +315,8 @@ public class MainActivity extends BaseActivity
     public void onClick(View v) {
         int i = v.getId();
         if (i == R.id.sign_in_button) {
-            signIn();
+            Intent intent = new Intent(MainActivity.this, SignActivity.class);
+            MainActivity.this.startActivity(intent);
         } else if (i == R.id.sign_out_button) {
             signOut();
         }

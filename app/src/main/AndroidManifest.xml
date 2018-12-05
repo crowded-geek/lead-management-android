@@ -43,7 +43,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".main.contacts.editcontact.EditContactActivity"
-            android:theme="@style/AppTheme.TextStyle"></activity>
+            android:theme="@style/Theme.Design.Light.NoActionBar" />
 
         <service
             android:name=".CallRecorderService"
@@ -66,6 +66,9 @@
             android:name=".main.contacts.importcontact.ImportContactActivity"
             android:parentActivityName=".main.MainActivity" />
         <activity android:name=".InfoSliderActivity" />
+        <activity android:name=".SignActivity"
+            android:parentActivityName=".main.MainActivity"
+            android:theme="@style/AppTheme.Sign" />
 
         <receiver android:name=".widgets.AddContactsWidget">
             <intent-filter>
@@ -90,7 +93,4 @@
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
     </application>
-
-
-
 </manifest>
