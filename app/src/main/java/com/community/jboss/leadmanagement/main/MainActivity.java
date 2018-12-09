@@ -16,7 +16,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.community.jboss.leadmanagement.BaseActivity;
@@ -91,7 +90,6 @@ public class MainActivity extends BaseActivity
 
         navigationView.setOnNavigationItemSelectedListener(this);
 
-
         // Set initial selected item to Contacts
         if (savedInstanceState == null) {
             selectInitialNavigationItem();
@@ -106,7 +104,6 @@ public class MainActivity extends BaseActivity
         onNavigationItemSelected(navigationView.getMenu().findItem(initialItem));
         navigationView.setSelectedItemId(initialItem);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -205,12 +202,11 @@ public class MainActivity extends BaseActivity
         }
     }
 
-
     public void initFab() {
         Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.content_frame);
         if (fragment instanceof ContactsFragment) {
             fab.setOnClickListener(view -> {
-                if(mAuth.getCurrentUser() != null) {
+                if(mAuth.getCurrentUser() == null) {
                     startActivity(new Intent(getApplicationContext(), EditContactActivity.class));
                 }else {
                     Toast.makeText(this, R.string.not_signed, Toast.LENGTH_SHORT).show();

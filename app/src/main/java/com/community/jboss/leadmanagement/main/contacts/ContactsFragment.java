@@ -1,6 +1,7 @@
 package com.community.jboss.leadmanagement.main.contacts;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -11,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -85,19 +87,23 @@ public class ContactsFragment extends MainFragment implements ContactsAdapter.Ad
                     mAdapter.getFilter().filter(searchView.getQuery());
                     if( mAdapter.getDataSize() == 0){
                         textView.setVisibility(View.VISIBLE);
-                    } else{
+                    } else {
                         textView.setVisibility(View.GONE);
                     }
+                    InputMethodManager inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
                 }
                 return true;
             }
 
             @Override
             public boolean onMenuItemActionCollapse(MenuItem item) {
-                if(item==searchMenuItem){
+                if(item==searchMenuItem) {
                     mAdapter.getFilter().filter("");
                     textView.setVisibility(View.GONE);
                 }
+                InputMethodManager inputMethodManager = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(getView().getWindowToken(),0);
                 return true;
             }
         });

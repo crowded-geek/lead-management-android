@@ -35,6 +35,8 @@
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
         app:menu="@menu/activity_main_drawer"
+        android:background="#fff"
+        app:elevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>
