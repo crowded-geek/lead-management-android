@@ -23,7 +23,8 @@ This app is currently in development, which means that in the future, many more 
 
 ## Flow Diagram for the app
 ![](https://raw.githubusercontent.com/JBossOutreach/lead-management-android/master/art.jpg)
-
+## Screenshots
+![](https://i.imgur.com/Bgu9BqW.png)
 ## Setting up project
 
 **1.** **Fork** this project by clicking the _Fork_ button on top right corner of this page.
