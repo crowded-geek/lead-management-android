@@ -8,4 +8,5 @@
     <color name="darkColorPrimaryDark">#153f87</color>
     <color name="darkColorAccent">#FF4081</color>
     <color name="darkcardcolour">#212121</color>
+    <color name="white">#fff</color>
 </resources>
