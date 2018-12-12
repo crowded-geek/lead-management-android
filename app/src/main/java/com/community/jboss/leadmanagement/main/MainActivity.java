@@ -1,6 +1,5 @@
 package com.community.jboss.leadmanagement.main;
 
-
 import android.Manifest;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -9,14 +8,13 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.community.jboss.leadmanagement.BaseActivity;
@@ -46,7 +44,7 @@ public class MainActivity extends BaseActivity
     @BindView(R.id.fab)
     FloatingActionButton fab;
     @BindView(R.id.drawer_layout)
-    ConstraintLayout drawer;
+    RelativeLayout drawer;
     @BindView(R.id.nav_view)
     BottomNavigationView navigationView;
 
