@@ -231,7 +231,7 @@ public class EditContactActivity extends AppCompatActivity {
         boolean status = true;
 
         if(checkEditText(emailField, "Please enter mail")){
-            if(!emailField.getText().toString().contains("@")){
+            if(!emailField.getText().toString().matches("([\\w]+[@][\\w]+[.][A-z]+)")){
                 emailField.setError("Wrong mail formatting");
                 status = false;
             }
@@ -241,7 +241,10 @@ public class EditContactActivity extends AppCompatActivity {
             status = false;
         }
         if(!checkEditText(contactNameField, "Please enter full name")){
-            status = false;
+            if(!contactNameField.getText().toString().matches("([\\w]|[\\s+])*")) {
+                contactNameField.setError("Can't contain special characters");
+                status = false;
+            }
         }
         if(!checkEditText(queryField, "Please enter query")){
             status = false;
